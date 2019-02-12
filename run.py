@@ -78,7 +78,7 @@ def main():
             print("Please exit the application to log in to see your credentials")
             short_code = input().lower()
             if short_code == 'ex':
-                print("Exiting the password locker")
+                print("Bye ......")
                 break
     elif short_code == 'li':
 
@@ -145,7 +145,7 @@ def main():
                     print("You don't have credentials saved yet")
 
             elif short_code == 'ex':
-                print("Exiting the password locker")
+                print("Bye ......")
                 break
 
             else:
