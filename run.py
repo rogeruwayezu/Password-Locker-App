@@ -6,7 +6,7 @@ import random
 
 def create_user(user_name, password):
     """
-    Function to create a new users
+    function to create a new user
     """
     new_user = User(user_name, password)
     return new_user
@@ -14,16 +14,17 @@ def create_user(user_name, password):
 
 def save_user(user):
     """
-    Function to save contact
+    Function to save user
     """
     user.save_user()
 
 
-def check_existing_users(user_name):
-    """
-    Functionto to check if an user exists using the user _name
-    """
-    return User.user_exist(user_name)
+def verify_user(first_name, password):
+    '''
+    Function that verifies the existance of the user before creating credentials
+    '''
+    checking_user = User.check_user(first_name, password)
+    return checking_user
 
 
 def add_credential(account_type, user_name, password):
@@ -43,18 +44,25 @@ def save_credentials(credential):
 
 def display_credentials():
     """
-    Function that returns all the saved credentials
+    Function for returning all the saved credentials
     """
     return Credential.display_credentials()
+
+
+# def display_credentials(user_name):
+#     '''
+#     Function to display credentials saved by a user
+#     '''
+#     return Credential.display_credentials(user_name)
 
 
 def main():
     print("Welcome!")
 
-    print("Please enter one of the following codes to proceed, create - create user if you don't have account yet , login -if you already have an account and exit to exit the application ")
+    print("if you don't have an account yet, type ca or if you have an account type li")
     short_code = input().lower()
 
-    if short_code == 'create':
+    if short_code == 'ca':
         print("Create user")
         print("Username")
         user_name = input()
@@ -65,25 +73,28 @@ def main():
         print('\n')
         print(f"Log in details for {user_name}  have been saved")
         print('\n')
+        while True:
 
-        print("Please exit the application to log in to see your credentials")
+            print("Please exit the application to log in to see your credentials")
+            short_code = input().lower()
+            if short_code == 'ex':
+                print("Exiting the password locker")
+                break
+    elif short_code == 'li':
 
-    elif short_code == 'login':
-
-        print("Fill in the required details")
         print("Enter your user name")
         user_name = input()
         print("Enter your password")
         password = input()
 
-        sign_in = check_existing_users(user_name)
+        # sign_in = verify_user(user_name, password)
 
-        if sign_in == True:
-            print("welcome back")
+        # if sign_in == True:
+        #     print("welcome back")
 
         while True:
 
-            print("Welcome")
+            print("Welcome back")
 
             print("Please use these short codes to navigate: ac -add credentials, dc -display credentials, ex -exit the application")
             short_code = input().lower()
@@ -98,7 +109,7 @@ def main():
                 # password=input()
 
                 print(
-                    "You can choose to create your password or generate it ,if you want to generate  password type generate or if create type c")
+                    "if you want to generate  password type generate or if you want to create it type create")
                 code = input().lower()
 
                 if code == 'create':
@@ -143,5 +154,4 @@ def main():
 
 
 if __name__ == '__main__':
-
     main()
